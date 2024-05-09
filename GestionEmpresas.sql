@@ -14,7 +14,8 @@ CREATE TABLE Alumnos (
 -- Creación de la tabla Tutores
 CREATE TABLE Tutores (
     CodigoTutor INT AUTO_INCREMENT PRIMARY KEY,
-    NombreApellido VARCHAR(200),
+    Nombre VARCHAR(100),
+    Apellidos VARCHAR(100),
     CorreoElectronico VARCHAR(255),
     DNI CHAR(9) UNIQUE,
     Telefono VARCHAR(20),
