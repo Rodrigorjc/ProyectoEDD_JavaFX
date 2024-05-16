@@ -42,6 +42,7 @@ public class HelloController {
     @FXML
     private Label successLabel;
 
+    @FXML
     private Button boton_dat;
     @FXML
     private Label mensaje_dat;
@@ -111,6 +112,7 @@ public class HelloController {
                 System.out.println("Seleccion de archivo dat cancelada");
             }
         });
+    }
     @FXML
     public void handleTutorsButtonAction() {
         FileChooser fileChooser = new FileChooser();
