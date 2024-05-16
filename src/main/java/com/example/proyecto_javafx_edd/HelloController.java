@@ -84,10 +84,12 @@ public class HelloController {
 
                     // Mensaje de exito mostrado en la interfaz de usuario y en la terminal.
                     mensaje_dat.setText("Informacion del fichero ahora registrada en Alumnos");
+                    mensaje_dat.setStyle("-fx-background-color: #22b922;");
                     System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
                 } catch (Exception ex) {
                     // Mensaje de error mostrado en la interfaz de usuario y en la terminal.
                     mensaje_dat.setText("ERROR al intentar leer el archivo .dat");
+                    mensaje_dat.setStyle("-fx-background-color: #ec0606;");
                     ex.printStackTrace();
                 }
             } else {
