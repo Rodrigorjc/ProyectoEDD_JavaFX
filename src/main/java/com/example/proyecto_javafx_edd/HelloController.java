@@ -56,7 +56,6 @@ public class HelloController {
                 try {
                     // Abrir el archivo seleccionado
                     FileInputStream fis = new FileInputStream(selectedFile);
-                    InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
                     DataInputStream dis = new DataInputStream(fis);
 
                     // Conectar con la base de datos
@@ -66,9 +65,10 @@ public class HelloController {
                     String line;
                     while ((line = dis.readLine()) != null) {
                         // Separa los campos de una linea mediante el delimitador en este caso la coma
-                        String[] fields = line.split(",");  // Replace the comma with the actual delimiter used in your .dat file
+                        String[] fields = line.split(",");
 
                         // Setear los valores anterior mente separados en los campos de la tabla Alumnos
+
                         ps.setString(1, fields[0]);  // DNI
                         ps.setString(2, fields[1]);  // Nombre
                         ps.setString(3, fields[2]);  // Apellidos
