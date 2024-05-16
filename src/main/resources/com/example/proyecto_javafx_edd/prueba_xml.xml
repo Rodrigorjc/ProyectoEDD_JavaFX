@@ -1,0 +1,16 @@
+<tutors>
+    <tutor>
+        <nombre>Paco</nombre>
+        <apellidos>Doe</apellidos>
+        <correoElectronico>paco.doe@example.com</correoElectronico>
+        <dni>14587968V</dni>
+        <telefono>123456789</telefono>
+    </tutor>
+    <tutor>
+        <nombre>Pepe</nombre>
+        <apellidos>Doe</apellidos>
+        <correoElectronico>pepe.doe@example.com</correoElectronico>
+        <dni>87659871A</dni>
+        <telefono>987654321</telefono>
+    </tutor>
+</tutors>
