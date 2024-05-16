@@ -111,6 +111,7 @@ public class HelloController {
                 System.out.println("Seleccion de archivo dat cancelada");
             }
         });
+    @FXML
     public void handleTutorsButtonAction() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
