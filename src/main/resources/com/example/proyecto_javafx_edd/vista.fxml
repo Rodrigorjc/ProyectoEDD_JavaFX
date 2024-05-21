@@ -1,237 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="856.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <tabs>
-    <Tab text="Empresas">
-         <content>
-            <AnchorPane prefHeight="802.0" prefWidth="680.0">
-               <children>
-                  <Text layoutX="140.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE EMPRESAS ">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
-                  <AnchorPane layoutX="7.0" layoutY="109.0" prefHeight="154.0" prefWidth="665.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
-                     <children>
-                        <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código Empreas:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1015.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto_javafx_edd.EmpresaController">
+    <tabs>
+        <Tab text="Empresas">
+            <content>
+                <AnchorPane prefHeight="802.0" prefWidth="680.0">
+                    <children>
+                        <Text layoutX="140.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE EMPRESAS ">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
                         </Text>
-                        <TextField layoutX="127.0" layoutY="34.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="60.0" />
-                        <Text layoutX="218.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CIF:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
+                        <AnchorPane layoutX="7.0" layoutY="109.0" prefHeight="154.0" prefWidth="665.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
+                            <children>
+                                <Text layoutX="13.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código Empresa:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtCodigoEmpresa" editable="false" layoutX="119.0" layoutY="26.0" maxHeight="28.0" minHeight="20.0" prefHeight="28.0" prefWidth="39.0" />
+                                <Text layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CIF:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtCif" layoutX="200.0" layoutY="26.0" maxHeight="28.0" minHeight="20.0" prefHeight="28.0" prefWidth="107.0" />
+                                <Text layoutX="329.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtNombre" layoutX="394.0" layoutY="25.0" maxHeight="29.0" minHeight="20.0" prefHeight="29.0" prefWidth="258.0" />
+                                <Text layoutX="9.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtDireccion" layoutX="80.0" layoutY="65.0" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="232.0" />
+                                <Text layoutX="322.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C.P:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtCp" layoutX="354.0" layoutY="66.0" maxHeight="28.0" minHeight="20.0" prefHeight="28.0" prefWidth="60.0" />
+                                <Text layoutX="427.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Localidad:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtLocalidad" layoutX="491.0" layoutY="64.0" maxHeight="33.0" minHeight="20.0" prefHeight="33.0" prefWidth="160.0">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </TextField>
+                                <Text layoutX="14.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jornada:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <SplitMenuButton fx:id="txtTipoJornada" layoutX="70.0" layoutY="108.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="124.0">
+                                    <items>
+
+                                        <MenuItem fx:id="miPartida" mnemonicParsing="false" text="Partida"  onAction="#seleccionarTipoJornada"/>
+                                        <MenuItem fx:id="miContinua" mnemonicParsing="false" text="Continua" onAction="#seleccionarTipoJornada" />
+
+                                    </items>
+                                </SplitMenuButton>
+                                <Text layoutX="198.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalidad:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <SplitMenuButton fx:id="txtModalidad" layoutX="272.0" layoutY="111.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="136.0">
+                                    <items>
+                                        <MenuItem fx:id="miPresencial" mnemonicParsing="false" text="Presencial" />
+                                        <MenuItem fx:id="miSemipresencial" mnemonicParsing="false" text="Semipresencial" />
+                                        <MenuItem fx:id="miDistancia" mnemonicParsing="false" text="Distancia" />
+                                    </items>
+                                </SplitMenuButton>
+                                <Text layoutX="413.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtMail" layoutX="448.0" layoutY="109.0" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="203.0">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </TextField>
+                                <Group layoutX="278.0" layoutY="-17.0">
+                                    <children>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-14.0" stroke="#f8f8f8" strokeType="INSIDE" width="103.0" />
+                                        <Text layoutX="2.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa">
+                                            <font>
+                                                <Font name="System Bold Italic" size="18.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Group>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="7.0" layoutY="305.0" prefHeight="120.0" prefWidth="665.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
+                            <children>
+                                <Group layoutX="278.0" layoutY="-17.0">
+                                    <children>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-14.0" stroke="#f8f8f8" strokeType="INSIDE" width="103.0" />
+                                        <Text layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personas">
+                                            <font>
+                                                <Font name="System Bold Italic" size="18.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Group>
+                                <Text layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI Rep. Legal:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtDniResponsable" layoutX="102.0" layoutY="23.0" maxHeight="32.0" minHeight="20.0" prefHeight="32.0" prefWidth="95.0" />
+                                <Text layoutX="8.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI Tut. Legal:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtDniTutor" layoutX="95.0" layoutY="66.0" maxHeight="34.0" minHeight="20.0" prefHeight="34.0" prefWidth="82.0" />
+                                <Text layoutX="202.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre RL:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtNombreResponsable" layoutX="274.0" layoutY="27.0" maxHeight="28.0" minHeight="20.0" prefHeight="28.0" prefWidth="122.0" />
+                                <Text layoutX="401.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos RL:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtApellidosResponsable" layoutX="486.0" layoutY="25.0" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="160.0" />
+                                <Text layoutX="180.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre TL:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtNombreTutor" layoutX="250.0" layoutY="69.0" maxHeight="32.0" minHeight="20.0" prefHeight="32.0" prefWidth="98.0" />
+                                <Text layoutX="350.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos TL:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtApellidosTutor" layoutX="427.0" layoutY="72.0" maxHeight="35.0" minHeight="20.0" prefHeight="31.0" prefWidth="92.0" />
+                                <Text layoutX="529.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlf. TL:">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="txtTelefonoTutor" layoutX="567.0" layoutY="71.0" maxHeight="35.0" minHeight="20.0" prefHeight="31.0" prefWidth="85.0" />
+                            </children>
+                        </AnchorPane>
+                        <Pane layoutX="191.0" layoutY="461.0" prefHeight="65.0" prefWidth="298.0" style="-fx-border-color: #965dcf; -fx-border-insets: 1;">
+                            <children>
+                                <Button fx:id="btnInsertar" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="Insertar" onAction="#insertarEmpresa">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnEliminar" layoutX="211.0" layoutY="17.0" mnemonicParsing="false" text="Eliminar" onAction="#eliminarEmpresa">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnModificar" layoutX="108.0" layoutY="17.0" mnemonicParsing="false" text="Modificar" onAction="#modificarEmpresa">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                        <AnchorPane layoutX="7.0" layoutY="562.0" prefHeight="362.0" prefWidth="666.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
+                            <children>
+                                <Group layoutX="287.0" layoutY="-19.0">
+                                    <children>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-107.0" layoutY="3.0" stroke="#f8f8f8" strokeType="INSIDE" width="268.0" />
+                                        <Text layoutX="-87.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reflejo de la base de datos ">
+                                            <font>
+                                                <Font name="System Bold Italic" size="18.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Group>
+                                <TableView   fx:id="tblEmpresas" onMouseClicked="#seleccionarEmpresa" layoutX="13.0" layoutY="20.0" prefHeight="326.0" prefWidth="639.0">
+                                    <columns>
+                                        <TableColumn fx:id="colCif" prefWidth="87.0" text="CIF" />
+                                        <TableColumn fx:id="colNombre" prefWidth="89.0" text="Nombre" />
+                                        <TableColumn fx:id="colDireccion" prefWidth="111.0" text="Direccion" />
+                                        <TableColumn fx:id="colCp" prefWidth="77.0" text="C.P" />
+                                        <TableColumn fx:id="colLocalidad" prefWidth="122.0" text="Localidad" />
+                                        <TableColumn fx:id="colTipoJornada" minWidth="9.0" prefWidth="78.0" text="Jornada" />
+                                        <TableColumn fx:id="colModalidad" minWidth="5.0" prefWidth="94.0" text="Modalidad" />
+                                        <TableColumn fx:id="colMail" minWidth="0.0" prefWidth="0.0" text="Mail" />
+                                    </columns>
+                                </TableView>
+                                <ScrollBar layoutX="13.0" layoutY="333.0" prefHeight="19.0" prefWidth="638.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </content></Tab>
+        <Tab text="Alumnos">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content></Tab>
+        <Tab text="Tutores" />
+        <Tab text="Asignación">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Text layoutX="140.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE EMPRESAS ">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
                         </Text>
-                        <TextField layoutX="248.0" layoutY="34.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="60.0" />
-                        <Text layoutX="330.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="394.0" layoutY="34.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="257.0" />
-                        <Text layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="80.0" layoutY="74.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="181.0" />
-                        <Text layoutX="308.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C.P:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="343.0" layoutY="74.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="60.0" />
-                        <Text layoutX="434.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Localidad:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="504.0" layoutY="72.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="145.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        <Text layoutX="14.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jornada:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <SplitMenuButton layoutX="70.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </SplitMenuButton>
-                        <Text layoutX="198.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalidad:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <SplitMenuButton layoutX="272.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </SplitMenuButton>
-                        <Text layoutX="413.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="448.0" layoutY="119.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="203.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        <Group layoutX="278.0" layoutY="-17.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-14.0" stroke="#f8f8f8" strokeType="INSIDE" width="103.0" />
-                              <Text layoutX="2.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Group>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="7.0" layoutY="305.0" prefHeight="120.0" prefWidth="665.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
-                     <children>
-                        <Group layoutX="278.0" layoutY="-17.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-14.0" stroke="#f8f8f8" strokeType="INSIDE" width="103.0" />
-                              <Text layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personas">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Group>
-                        <Text layoutX="8.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI Rep. Legal:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="102.0" layoutY="35.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="95.0" />
-                        <Text layoutX="8.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI Tut. Legal:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="95.0" layoutY="76.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="82.0" />
-                        <Text layoutX="202.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre RL:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="274.0" layoutY="35.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="122.0" />
-                        <Text layoutX="401.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos RL:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="486.0" layoutY="35.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="160.0" />
-                        <Text layoutX="180.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre TL:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="250.0" layoutY="76.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="98.0" />
-                        <Text layoutX="350.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos TL:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="427.0" layoutY="77.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="111.0" />
-                        <Text layoutX="540.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlf. TL:">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="578.0" layoutY="77.0" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="73.0" />
-                     </children>
-                  </AnchorPane>
-                  <Pane layoutX="191.0" layoutY="461.0" prefHeight="65.0" prefWidth="298.0" style="-fx-border-color: #965dcf; -fx-border-insets: 1;">
-                     <children>
-                        <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" text="Insertar">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="211.0" layoutY="17.0" mnemonicParsing="false" text="Eliminar">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="108.0" layoutY="17.0" mnemonicParsing="false" text="Modificar">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
-                  <AnchorPane layoutX="7.0" layoutY="562.0" prefHeight="172.0" prefWidth="665.0" style="-fx-border-color: #965dcf; -fx-border-width: 3;">
-                     <children>
-                        <Group layoutX="287.0" layoutY="-19.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="33.0" layoutX="-107.0" layoutY="3.0" stroke="#f8f8f8" strokeType="INSIDE" width="268.0" />
-                              <Text layoutX="-87.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reflejo de la base de datos ">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Group>
-                        <TableView layoutX="13.0" layoutY="20.0" prefHeight="200.0" prefWidth="639.0">
-                          <columns>
-                            <TableColumn prefWidth="87.0" text="CIF" />
-                            <TableColumn prefWidth="89.0" text="Nombre" />
-                              <TableColumn prefWidth="111.0" text="Direccion" />
-                              <TableColumn prefWidth="77.0" text="C.P" />
-                              <TableColumn prefWidth="122.0" text="Localidad" />
-                              <TableColumn minWidth="9.0" prefWidth="78.0" text="Jornada" />
-                              <TableColumn minWidth="5.0" prefWidth="94.0" text="Modalidad" />
-                              <TableColumn minWidth="0.0" prefWidth="0.0" text="Mail" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </content></Tab>
-    <Tab text="Alumnos">
-         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </content></Tab>
-      <Tab text="Tutores" />
-      <Tab text="Asignación">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Text layoutX="140.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE EMPRESAS ">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-  </tabs>
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
 </TabPane>
