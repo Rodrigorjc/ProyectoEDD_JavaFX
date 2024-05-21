@@ -32,10 +32,9 @@ public class HelloController {
 
     // Campos de la base de datos
     // Ajustar estos campos dependiendo de la configuracion que se tenga de la base de datos y el gestor de la misma.
-    String url = "jdbc:mysql://localhost:3306/GestionEmpresas";
+    String url = "jdbc:mysql://localhost:3306/GestionEmpresas?useSSL=false";
     String user = "root";
-    String password = "Antonio";
-
+    String password = "Rom@te211";
     Connection conn;
 
     //TAB USUARIOS --> Boton de Agregar datos de archivos DAT
@@ -48,7 +47,7 @@ public class HelloController {
     private Label mensaje_dat;
     public HelloController() {
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            Connection conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -127,12 +126,6 @@ public class HelloController {
                 doc.getDocumentElement().normalize();
 
                 NodeList nList = doc.getElementsByTagName("tutor");
-
-                // Conexión a la base de datos
-                String url = "jdbc:mysql://localhost:3306/GestionEmpresas?useSSL=false";
-                String user = "root";
-                String password = "Rom@te211";
-                Connection conn = DriverManager.getConnection(url, user, password);
 
                 for (int i = 0; i < nList.getLength(); i++) {
                     Node nNode = nList.item(i);
