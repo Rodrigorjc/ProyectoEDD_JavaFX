@@ -44,9 +44,11 @@ CREATE TABLE Asignados (
     CodigoAsignacion INT AUTO_INCREMENT PRIMARY KEY,
     CodigoAlumno INT,
     CodigoEmpresa INT,
+    CodigoTutor INT
     FechaHoraAsignacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (CodigoAlumno) REFERENCES Alumnos(CodigoAlumno),
     FOREIGN KEY (CodigoEmpresa) REFERENCES Empresas(CodigoEmpresa)
+    foreign key (CodigoTutor) references Tutores(CodigoTutor),
 );
 
 
@@ -54,3 +56,23 @@ DROP TABLE IF EXISTS Asignados;
 DROP TABLE IF EXISTS Alumnos;
 DROP TABLE IF EXISTS Empresas;
 DROP TABLE IF EXISTS Tutores;
+
+
+
+INSERT INTO Alumnos (DNI, Nombre, Apellidos, FechaNacimiento) 
+VALUES ('12345678A', 'Juan', 'Pérez', '2000-01-01'),
+       ('23456789B', 'María', 'González', '2001-02-02'),
+       ('34567890C', 'Carlos', 'López', '1999-03-03');
+
+INSERT INTO Tutores (Nombre, Apellidos, CorreoElectronico, DNI, Telefono)
+VALUES ('Tutor1', 'Apellido', 'pedro@example.com', '12341278L', '153456789'),
+('Tutor2', 'Apellido2', 'tutor2@example.com', '23456789B', '0987654321'),
+('Tutor3', 'Apellido3', 'tutor3@example.com', '34567890C', '1122334455');
+
+INSERT INTO Empresas (CIF, RazonSocial, Direccion, CP, Localidad, TipoJornada, Modalidad, MailEmpresa, Responsable, TutorLaboral)
+VALUES ('A12345678', 'Empresa 1', 'Calle Principal 123', '28001', 'Madrid', 'Continua', 'Presencial', 'empresa1@example.com', 1, 8),
+       ('B23456789', 'Empresa 2', 'Avenida Central 456', '08001', 'Barcelona', 'Partida', 'Semipresencial', 'empresa2@example.com', 8, 9),
+       ('C34567890', 'Empresa 3', 'Plaza Principal 789', '41001', 'Sevilla', 'Continua', 'Distancia', 'empresa3@example.com', 10, 9);
+
+
+
