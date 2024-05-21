@@ -1,7 +1,5 @@
 package com.example.proyecto_javafx_edd;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -10,44 +8,31 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import javafx.stage.FileChooser;
-
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import javafx.scene.layout.AnchorPane;
 
 import java.sql.*;
 
 public class HelloController {
-
-    // Campos de la base de datos
-    // Ajustar estos campos dependiendo de la configuracion que se tenga de la base de datos y el gestor de la misma.
-    String url = "jdbc:mysql://localhost:3306/GestionEmpresas?useSSL=false";
-    String user = "root";
-    String password = "Rom@te211";
-    Connection conn;
 
     //TAB USUARIOS --> Boton de Agregar datos de archivos DAT
     @FXML
     private Label successLabel;
 
     @FXML
+    private Button confirmarButton;
+    @FXML
     private Button boton_dat;
+
+    @FXML
     private ComboBox<String> alumnosComboBox;
 
     @FXML
@@ -60,12 +45,31 @@ public class HelloController {
     private Label mensajeLabel;
     @FXML
     private Label mensaje_dat;
+
+    // Campos de la base de datos
+    // Ajustar estos campos dependiendo de la configuracion que se tenga de la base de datos y el gestor de la misma.
+    String url = "jdbc:mysql://localhost:3306/GestionEmpresas";
+    String user = "root";
+    String password = "Antonio";
+    Connection conn;
+
     public HelloController() {
         try {
-            Connection conn = DriverManager.getConnection(url, user, password);
+            this.conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void initialize() {
+        // Llenar los ComboBox con datos de la base de datos
+        llenarComboBoxAlumnos();
+        llenarComboBoxEmpresas();
+        llenarComboBoxTutores();
+
+        // Configurar el botón Confirmar
+        confirmarButton.setOnAction(event -> {
+            asignarAlumnoAEmpresa();
+        });
     }
 
     @FXML
@@ -108,8 +112,6 @@ public class HelloController {
                     }
 
                     // Cerrar conexion de base de datos y archivo .dat
-                    dis.close();
-                    conn.close();
 
                     // Mensaje de exito mostrado en la interfaz de usuario y en la terminal.
                     mensaje_dat.setText("Informacion del fichero ahora registrada en Alumnos");
@@ -174,27 +176,16 @@ public class HelloController {
         } else {
             System.out.println("No se seleccionó ningún archivo");
         }
-    private Button confirmarButton;
+    }
 
     // Método para inicializar la interfaz de usuario
-    public void initialize() {
-        // Llenar los ComboBox con datos de la base de datos
-        llenarComboBoxAlumnos();
-        llenarComboBoxEmpresas();
-        llenarComboBoxTutores();
 
-        // Configurar el botón Confirmar
-        confirmarButton.setOnAction(event -> {
-            asignarAlumnoAEmpresa();
-        });
-    }
 
 
     // Método para llenar el ComboBox de alumnos
     private void llenarComboBoxAlumnos() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionempresas", "root", "1234");
-            Statement statement = connection.createStatement();
+            Statement statement = conn.createStatement();
 
             ResultSet alumnosResultSet = statement.executeQuery("SELECT Nombre FROM Alumnos");
             while (alumnosResultSet.next()) {
@@ -202,7 +193,6 @@ public class HelloController {
             }
 
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -211,8 +201,7 @@ public class HelloController {
     // Método para llenar el ComboBox de empresas
     private void llenarComboBoxEmpresas() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionempresas", "root", "1234");
-            Statement statement = connection.createStatement();
+            Statement statement = conn.createStatement();
 
             ResultSet empresasResultSet = statement.executeQuery("SELECT RazonSocial FROM Empresas");
             while (empresasResultSet.next()) {
@@ -220,7 +209,6 @@ public class HelloController {
             }
 
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -229,8 +217,7 @@ public class HelloController {
     // Método para llenar el ComboBox de tutores
     private void llenarComboBoxTutores() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionempresas", "root", "1234");
-            Statement statement = connection.createStatement();
+            Statement statement = conn.createStatement();
 
             ResultSet tutoresResultSet = statement.executeQuery("SELECT Nombre FROM Tutores");
             while (tutoresResultSet.next()) {
@@ -238,7 +225,6 @@ public class HelloController {
             }
 
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -252,9 +238,6 @@ public class HelloController {
         String tutorSeleccionado = tutoresComboBox.getValue();
 
 
-
-
-
         // Aquí debes verificar si el alumno ya está asignado a una empresa
         boolean alumnoYaAsignado = verificarAlumnoAsignado(alumnoSeleccionado);
 
@@ -265,24 +248,23 @@ public class HelloController {
         } else {
             //Conectar con la base de datos
             try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionempresas", "root", "1234");
 
                 String sqlAlumno = "SELECT CodigoAlumno From alumnos WHERE Nombre = ?";
-                PreparedStatement preparedStatementAlumno = connection.prepareStatement(sqlAlumno);
+                PreparedStatement preparedStatementAlumno = conn.prepareStatement(sqlAlumno);
                 preparedStatementAlumno.setString(1, alumnoSeleccionado);
                 ResultSet resultSetAlumno = preparedStatementAlumno.executeQuery();
                 resultSetAlumno.next();
                 int alumnoId = resultSetAlumno.getInt("CodigoAlumno");
 
                 String sqlEmpresa = "SELECT CodigoEmpresa From empresas WHERE RazonSocial = ?";
-                PreparedStatement preparedStatementEmpresa = connection.prepareStatement(sqlEmpresa);
+                PreparedStatement preparedStatementEmpresa = conn.prepareStatement(sqlEmpresa);
                 preparedStatementEmpresa.setString(1, empresaSeleccionada);
                 ResultSet resultSetEmpresa = preparedStatementEmpresa.executeQuery();
                 resultSetEmpresa.next();
                 int empresaId = resultSetEmpresa.getInt("CodigoEmpresa");
 
                 String sqlTutor = "SELECT CodigoTutor From tutores WHERE Nombre = ?";
-                PreparedStatement preparedStatementTutor = connection.prepareStatement(sqlTutor);
+                PreparedStatement preparedStatementTutor = conn.prepareStatement(sqlTutor);
                 preparedStatementTutor.setString(1, tutorSeleccionado);
                 ResultSet resultSetTutor = preparedStatementTutor.executeQuery();
                 resultSetTutor.next();
@@ -290,7 +272,7 @@ public class HelloController {
 
 
                 String sqlInsert = "INSERT INTO asignados (CodigoAlumno, CodigoEmpresa, CodigoTutor) VALUES (?, ?, ?)";
-                PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
+                PreparedStatement preparedStatementInsert = conn.prepareStatement(sqlInsert);
                 preparedStatementInsert.setInt(1, alumnoId);
                 preparedStatementInsert.setInt(2, empresaId);
                 preparedStatementInsert.setInt(3, tutorId);
@@ -310,9 +292,7 @@ public class HelloController {
     }
 
     // Método para verificar si el alumno ya está asignado
-    private boolean verificarAlumnoAsignado(String alumno) {
-        // Aquí debes implementar la lógica para verificar si el alumno ya está asignado a una empresa
-        // Por ejemplo, puedes consultar la base de datos para verificar si existe una asignación para este alumno
-        return false; // Por ahora devolvemos false como ejemplo
+    private boolean verificarAlumnoAsignado (String alumno) {
+        return false;
     }
 }

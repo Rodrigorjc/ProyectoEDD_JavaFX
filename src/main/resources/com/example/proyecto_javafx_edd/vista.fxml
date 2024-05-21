@@ -17,15 +17,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 
+<?import javafx.scene.control.ComboBox?>
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="856.0" prefWidth="680.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto_javafx_edd.HelloController">
-  <tabs>
-    <Tab text="Empresas">
+   <tabs>
+      <Tab text="Empresas">
          <content>
             <AnchorPane prefHeight="802.0" prefWidth="680.0">
                <children>
@@ -82,10 +78,10 @@
                            </font>
                         </Text>
                         <SplitMenuButton layoutX="70.0" layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Action 1" />
+                              <MenuItem mnemonicParsing="false" text="Action 2" />
+                           </items>
                         </SplitMenuButton>
                         <Text layoutX="198.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalidad:">
                            <font>
@@ -208,25 +204,25 @@
                            </children>
                         </Group>
                         <TableView layoutX="13.0" layoutY="20.0" prefHeight="200.0" prefWidth="639.0">
-                          <columns>
-                            <TableColumn prefWidth="87.0" text="CIF" />
-                            <TableColumn prefWidth="89.0" text="Nombre" />
+                           <columns>
+                              <TableColumn prefWidth="87.0" text="CIF" />
+                              <TableColumn prefWidth="89.0" text="Nombre" />
                               <TableColumn prefWidth="111.0" text="Direccion" />
                               <TableColumn prefWidth="77.0" text="C.P" />
                               <TableColumn prefWidth="122.0" text="Localidad" />
                               <TableColumn minWidth="9.0" prefWidth="78.0" text="Jornada" />
                               <TableColumn minWidth="5.0" prefWidth="94.0" text="Modalidad" />
                               <TableColumn minWidth="0.0" prefWidth="0.0" text="Mail" />
-                          </columns>
+                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
          </content></Tab>
-    <Tab text="Alumnos">
+      <Tab text="Alumnos">
          <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="799.0" prefWidth="680.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="799.0" prefWidth="680.0">
                <children>
                   <Text fontSmoothingType="LCD" layoutX="151.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE ALUMNOS ">
                      <font>
@@ -250,8 +246,8 @@
                </children></AnchorPane>
          </content></Tab>
       <Tab text="Tutores">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="620.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="620.0">
                <children>
                   <Pane layoutX="30.0" layoutY="14.0" prefHeight="340.0" prefWidth="620.0" style="-fx-border-color: #C7C4C3; -fx-border-width: 2px;">
                      <children>
@@ -283,8 +279,8 @@
                      </children>
                   </Pane>
                </children></AnchorPane>
-        </content>
-        </Tab>
+         </content>
+      </Tab>
       <Tab text="Asignación">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -294,45 +290,29 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-               </children></AnchorPane>
+                  <Label fx:id="mensajeLabel" layoutX="180.0" layoutY="300.0" text="" />
+                  <Label layoutX="83.0" layoutY="121.0" text="Elección de Alumno:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="81.0" layoutY="184.0" text="Elección de Empresa:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="81.0" layoutY="240.0" text="Elección de Tutor:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="alumnosComboBox" layoutX="205.0" layoutY="117.0" promptText="Seleccionar Alumno" />
+                  <ComboBox fx:id="empresasComboBox" layoutX="203.0" layoutY="180.0" promptText="Seleccionar Empresa" />
+                  <ComboBox fx:id="tutoresComboBox" layoutX="203.0" layoutY="236.0" promptText="Seleccionar Tutor" />
+                  <Button fx:id="confirmarButton" layoutX="83.0" layoutY="287.0" mnemonicParsing="false" onAction="#asignarAlumnoAEmpresa" text="Confirmar" />
+               </children>
+            </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Tutores" />
-     <Tab text="Asignación">
-        <content>
-           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-              <children>
-                 <Text layoutX="140.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTIÓN DE DATOS DE EMPRESAS ">
-                    <font>
-                       <Font name="System Bold" size="24.0" />
-                    </font>
-                 </Text>
-                 <Label fx:id="mensajeLabel" layoutX="180.0" layoutY="300.0" text="" />
-                 <Label layoutX="83.0" layoutY="121.0" text="Elección de Alumno:">
-                    <font>
-                       <Font name="System Bold" size="12.0" />
-                    </font>
-                 </Label>
-                 <Label layoutX="81.0" layoutY="184.0" text="Elección de Empresa:">
-                    <font>
-                       <Font name="System Bold" size="12.0" />
-                    </font>
-                 </Label>
-                 <Label layoutX="81.0" layoutY="240.0" text="Elección de Tutor:">
-                    <font>
-                       <Font name="System Bold" size="12.0" />
-                    </font>
-                 </Label>
-                 <ComboBox fx:id="alumnosComboBox" layoutX="205.0" layoutY="117.0" promptText="Seleccionar Alumno" />
-                 <ComboBox fx:id="empresasComboBox" layoutX="203.0" layoutY="180.0" promptText="Seleccionar Empresa" />
-                 <ComboBox fx:id="tutoresComboBox" layoutX="203.0" layoutY="236.0" promptText="Seleccionar Tutor" />
-                 <Button fx:id="confirmarButton" layoutX="83.0" layoutY="287.0" mnemonicParsing="false" onAction="#asignarAlumnoAEmpresa" text="Confirmar" />
-              </children>
-           </AnchorPane>
-        </content>
-     </Tab>
-
-
-
-  </tabs>
+   </tabs>
 </TabPane>
