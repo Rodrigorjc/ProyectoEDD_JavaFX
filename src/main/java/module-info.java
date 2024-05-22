@@ -7,7 +7,10 @@ module com.example.proyecto_javafx_edd {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.logging;
+    requires jdk.jdi;
 
     opens com.example.proyecto_javafx_edd to javafx.fxml;
     exports com.example.proyecto_javafx_edd;
+    opens lib to javafx.fxml;
 }
