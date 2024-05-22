@@ -31,6 +31,20 @@ public class EmpresaController {
     @FXML
     private TextField txtMail;
     @FXML
+    private TextField txtTelefonoTutor;
+    @FXML
+    private TextField txtDniResponsable;
+    @FXML
+    private TextField txtDniTutor;
+    @FXML
+    private TextField txtNombreResponsable;
+    @FXML
+    private TextField txtApellidosResponsable;
+    @FXML
+    private TextField txtNombreTutor;
+    @FXML
+    private TextField txtApellidosTutor;
+    @FXML
     private TableView<Empresa> tblEmpresas;
     @FXML
     private TableColumn<Empresa, String> colCif;
@@ -50,10 +64,12 @@ public class EmpresaController {
     private TableColumn<Empresa, String> colMail;
 
     private EmpresaDAO empresaDAO;
+    private EmpresaDAO tutorDAO;
     private ObservableList<Empresa> empresas;
 
     public void initialize() {
         empresaDAO = new EmpresaDAO();
+        tutorDAO = new EmpresaDAO();
         empresas = FXCollections.observableArrayList(empresaDAO.obtenerTodasLasEmpresas());
 
         colCif.setCellValueFactory(new PropertyValueFactory<>("cif"));
@@ -115,13 +131,32 @@ public class EmpresaController {
             String tipoJornada = txtTipoJornada.getValue().toString();
             String modalidad = txtModalidad.getValue().toString();
             String mailEmpresa = txtMail.getText();
+            String dniTutorResponsable = txtDniResponsable.getText();
+            String nombreTutorResponsable = txtNombreResponsable.getText();
+            String apellidosTutorResponsable = txtApellidosResponsable.getText();
+
+            String telefonoTutorLegal = txtTelefonoTutor.getText();
+            String dniTutorLegal = txtDniTutor.getText();
+            String nombreTutorLegal = txtNombreTutor.getText();
+            String apellidosTutorLegal = txtApellidosTutor.getText();
+
+            if (dniTutorResponsable.isEmpty() || nombreTutorResponsable.isEmpty() || apellidosTutorResponsable.isEmpty() || telefonoTutorLegal.isEmpty() || dniTutorLegal.isEmpty() || nombreTutorLegal.isEmpty() || apellidosTutorLegal.isEmpty()) {
+                mostrarAlerta("Error", "Todos los campos de los tutores deben ser completados.");
+                return;
+            }
+            Tutor tutorResponsable = new Tutor(dniTutorResponsable, nombreTutorResponsable, apellidosTutorResponsable, telefonoTutorLegal);
+
+
+            Tutor tutorLegal = new Tutor(dniTutorLegal, nombreTutorLegal, apellidosTutorLegal, telefonoTutorLegal);
+            int idTutorLegal = tutorDAO.obtenerIdTutor(tutorLegal);
+            int idTutorResponsable = tutorDAO.obtenerIdTutor(tutorResponsable);
 
             if (cif.isEmpty() || razonSocial.isEmpty() || direccion.isEmpty() || cp.isEmpty() || localidad.isEmpty() || tipoJornada.isEmpty() || modalidad.isEmpty() || mailEmpresa.isEmpty()) {
                 mostrarAlerta("Error", "Todos los campos deben ser completados.");
                 return;
             }
 
-            Empresa empresa = new Empresa(codigoEmpresa, cif, razonSocial, direccion, cp, localidad, tipoJornada, modalidad, mailEmpresa);
+            Empresa empresa = new Empresa(codigoEmpresa, cif, razonSocial, direccion, cp, localidad, tipoJornada, modalidad, mailEmpresa, idTutorResponsable, idTutorLegal);
             empresaDAO.insertarEmpresa(empresa);
             empresas.add(empresa);
 
@@ -162,12 +197,30 @@ public class EmpresaController {
                 String modalidad = txtModalidad.getValue().toString();
                 String mailEmpresa = txtMail.getText();
 
+                String dniTutorResponsable = txtDniResponsable.getText();
+                String nombreTutorResponsable = txtNombreResponsable.getText();
+                String apellidosTutorResponsable = txtApellidosResponsable.getText();
+
+                String dniTutorLegal = txtDniTutor.getText();
+                String nombreTutorLegal = txtNombreTutor.getText();
+                String apellidosTutorLegal = txtApellidosTutor.getText();
+                String telefonoTutorLegal = txtTelefonoTutor.getText();
+
+
+
                 if (cif.isEmpty() || razonSocial.isEmpty() || direccion.isEmpty() || cp.isEmpty() || localidad.isEmpty() || tipoJornada.isEmpty() || modalidad.isEmpty() || mailEmpresa.isEmpty()) {
                     mostrarAlerta("Error", "Todos los campos deben ser completados.");
                     return;
                 }
+                Tutor tutorResponsable = new Tutor(dniTutorResponsable, nombreTutorResponsable, apellidosTutorResponsable, telefonoTutorLegal);
+                int idtr = tutorDAO.obtenerIdTutor(tutorResponsable);
+                Tutor tutorLegal = new Tutor(dniTutorLegal, nombreTutorLegal, apellidosTutorLegal, telefonoTutorLegal);
+                int idt = tutorDAO.obtenerIdTutor(tutorLegal);
 
-                Empresa empresaModificada = new Empresa(codigoEmpresa, cif, razonSocial, direccion, cp, localidad, tipoJornada, modalidad, mailEmpresa);
+                empresaDAO.modificarTutor(tutorResponsable);
+                empresaDAO.modificarTutor(tutorLegal);
+
+                Empresa empresaModificada = new Empresa(codigoEmpresa, cif, razonSocial, direccion, cp, localidad, tipoJornada, modalidad, mailEmpresa, idtr, idt);
                 empresaDAO.modificarEmpresa(empresaModificada);
 
                 int selectedIndex = empresas.indexOf(selectedEmpresa);
@@ -194,6 +247,7 @@ public class EmpresaController {
 
 
 
+
     @FXML
     private void seleccionarEmpresa() {
         Empresa selectedEmpresa = tblEmpresas.getSelectionModel().getSelectedItem();
@@ -208,6 +262,22 @@ public class EmpresaController {
             txtTipoJornada.setValue(selectedEmpresa.getTipoJornada());
             txtModalidad.setValue(selectedEmpresa.getModalidad());
             txtMail.setText(selectedEmpresa.getMailEmpresa());
+            // Obtén los datos de los tutores
+            Tutor tutorResponsable = empresaDAO.obtenerTutorPorId(selectedEmpresa.getIdTutorResponsable());
+            Tutor tutorLegal = empresaDAO.obtenerTutorPorId(selectedEmpresa.getIdTutorLegal());
+            // Rellena los campos del formulario con los datos de los tutores
+            if (tutorResponsable != null) {
+                txtDniResponsable.setText(tutorResponsable.getDniTutor());
+                txtNombreResponsable.setText(tutorResponsable.getNombreTutor());
+                txtApellidosResponsable.setText(tutorResponsable.getApellidosTutor());
+            }
+
+            if (tutorLegal != null) {
+                txtDniTutor.setText(tutorLegal.getDniTutor());
+                txtNombreTutor.setText(tutorLegal.getNombreTutor());
+                txtApellidosTutor.setText(tutorLegal.getApellidosTutor());
+                txtTelefonoTutor.setText(tutorLegal.getTelefonoTutor());
+            }
         }
     }
 

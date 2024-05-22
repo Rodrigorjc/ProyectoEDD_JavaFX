@@ -15,10 +15,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("vista.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),680, 826);
+        Scene scene = new Scene(fxmlLoader.load(),680, 770);
         stage.setTitle("ProyectoEDD!");
         stage.setScene(scene);
         stage.show();
+
     }
 
 

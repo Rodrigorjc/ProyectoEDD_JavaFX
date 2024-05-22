@@ -12,8 +12,10 @@ public class Empresa {
     private final StringProperty tipoJornada;
     private final StringProperty modalidad;
     private final StringProperty mailEmpresa;
+    private IntegerProperty idTutorResponsable = null;
+    private IntegerProperty idTutorLegal = null;
 
-    public Empresa(int codigoEmpresa, String cif, String razonSocial, String direccion, String cp, String localidad, String tipoJornada, String modalidad, String mailEmpresa) {
+    public Empresa(int codigoEmpresa, String cif, String razonSocial, String direccion, String cp, String localidad, String tipoJornada, String modalidad, String mailEmpresa, int idTutorResponsable, int idTutorLegal) {
         this.codigoEmpresa = new SimpleIntegerProperty(codigoEmpresa);
         this.cif = new SimpleStringProperty(cif);
         this.razonSocial = new SimpleStringProperty(razonSocial);
@@ -23,6 +25,22 @@ public class Empresa {
         this.tipoJornada = new SimpleStringProperty(tipoJornada);
         this.modalidad = new SimpleStringProperty(modalidad);
         this.mailEmpresa = new SimpleStringProperty(mailEmpresa);
+        this.idTutorResponsable =new SimpleIntegerProperty(idTutorResponsable) ;
+        this.idTutorLegal = new SimpleIntegerProperty(idTutorResponsable);
+    }
+
+    public Empresa(int codigoEmpresa, String cif, String razonSocial, String direccion, String cp, String localidad, String tipoJornada, String modalidad, String mailEmpresa, String telefonoTutor, String dniResponsable, String dniTutor, String nombreResponsable, String apellidosResponsable, String nombreTutor, String apellidosTutor) {
+        this.codigoEmpresa = new SimpleIntegerProperty(codigoEmpresa);
+        this.cif = new SimpleStringProperty(cif);
+        this.razonSocial = new SimpleStringProperty(razonSocial);
+        this.direccion = new SimpleStringProperty(direccion);
+        this.cp = new SimpleStringProperty(cp);
+        this.localidad = new SimpleStringProperty(localidad);
+        this.tipoJornada = new SimpleStringProperty(tipoJornada);
+        this.modalidad = new SimpleStringProperty(modalidad);
+        this.mailEmpresa = new SimpleStringProperty(mailEmpresa);
+        this.idTutorResponsable = idTutorResponsable;
+        this.idTutorLegal = idTutorLegal;
     }
 
     public int getCodigoEmpresa() {
@@ -131,5 +149,29 @@ public class Empresa {
 
     public void setMailEmpresa(String mailEmpresa) {
         this.mailEmpresa.set(mailEmpresa);
+    }
+
+    public int getIdTutorResponsable() {
+        return idTutorResponsable.get();
+    }
+
+    public IntegerProperty idTutorResponsableProperty() {
+        return idTutorResponsable;
+    }
+
+    public void setIdTutorResponsable(int idTutorResponsable) {
+        this.idTutorResponsable.set(idTutorResponsable);
+    }
+
+    public int getIdTutorLegal() {
+        return idTutorLegal.get();
+    }
+
+    public IntegerProperty idTutorLegalProperty() {
+        return idTutorLegal;
+    }
+
+    public void setIdTutorLegal(int idTutorLegal) {
+        this.idTutorLegal.set(idTutorLegal);
     }
 }
