@@ -25,9 +25,9 @@ public class EmpresaController {
     @FXML
     private TextField txtLocalidad;
     @FXML
-    private SplitMenuButton txtTipoJornada;
+    private ComboBox txtTipoJornada;
     @FXML
-    private SplitMenuButton txtModalidad;
+    private ComboBox txtModalidad;
     @FXML
     private TextField txtMail;
     @FXML
@@ -72,16 +72,12 @@ public class EmpresaController {
         if (siguienteCodigoEmpresa != -1) {
             txtCodigoEmpresa.setText(String.valueOf(siguienteCodigoEmpresa));
         }
+        agregarOpcionesTipoJornada();
+        agregarOpcionesModalidad();
     }
 
     private void agregarOpcionesTipoJornada() {
-        MenuItem partida = new MenuItem("Partida");
-        MenuItem continua = new MenuItem("Continua");
-
-        partida.setOnAction(e -> txtTipoJornada.setText(partida.getText()));
-        continua.setOnAction(e -> txtTipoJornada.setText(continua.getText()));
-
-        txtTipoJornada.getItems().addAll(partida, continua);
+        txtTipoJornada.getItems().addAll("Partida", "Continua");
     }
 
     @FXML
@@ -103,15 +99,7 @@ public class EmpresaController {
 
 
     private void agregarOpcionesModalidad() {
-        MenuItem presencial = new MenuItem("Presencial");
-        MenuItem semipresencial = new MenuItem("Semipresencial");
-        MenuItem distancia = new MenuItem("Distancia");
-
-        presencial.setOnAction(e -> txtModalidad.setText(presencial.getText()));
-        semipresencial.setOnAction(e -> txtModalidad.setText(semipresencial.getText()));
-        distancia.setOnAction(e -> txtModalidad.setText(distancia.getText()));
-
-        txtModalidad.getItems().addAll(presencial, semipresencial, distancia);
+        txtModalidad.getItems().addAll("Presencial", "Semipresencial", "Distancia");
     }
 
 
@@ -124,8 +112,8 @@ public class EmpresaController {
             String direccion = txtDireccion.getText();
             String cp = txtCp.getText();
             String localidad = txtLocalidad.getText();
-            String tipoJornada = txtTipoJornada.getText();
-            String modalidad = txtModalidad.getText();
+            String tipoJornada = txtTipoJornada.getValue().toString();
+            String modalidad = txtModalidad.getValue().toString();
             String mailEmpresa = txtMail.getText();
 
             if (cif.isEmpty() || razonSocial.isEmpty() || direccion.isEmpty() || cp.isEmpty() || localidad.isEmpty() || tipoJornada.isEmpty() || modalidad.isEmpty() || mailEmpresa.isEmpty()) {
@@ -170,8 +158,8 @@ public class EmpresaController {
                 String direccion = txtDireccion.getText();
                 String cp = txtCp.getText();
                 String localidad = txtLocalidad.getText();
-                String tipoJornada = txtTipoJornada.getText();
-                String modalidad = txtModalidad.getText();
+                String tipoJornada = txtTipoJornada.getValue().toString();
+                String modalidad = txtModalidad.getValue().toString();
                 String mailEmpresa = txtMail.getText();
 
                 if (cif.isEmpty() || razonSocial.isEmpty() || direccion.isEmpty() || cp.isEmpty() || localidad.isEmpty() || tipoJornada.isEmpty() || modalidad.isEmpty() || mailEmpresa.isEmpty()) {
@@ -199,8 +187,8 @@ public class EmpresaController {
         txtDireccion.clear();
         txtCp.clear();
         txtLocalidad.clear();
-        txtTipoJornada.setText("");
-        txtModalidad.setText("");
+        txtTipoJornada.getSelectionModel().clearSelection();
+        txtModalidad.getSelectionModel().clearSelection();
         txtMail.clear();
     }
 
@@ -217,8 +205,8 @@ public class EmpresaController {
             txtDireccion.setText(selectedEmpresa.getDireccion());
             txtCp.setText(selectedEmpresa.getCp());
             txtLocalidad.setText(selectedEmpresa.getLocalidad());
-            txtTipoJornada.setText(selectedEmpresa.getTipoJornada());
-            txtModalidad.setText(selectedEmpresa.getModalidad());
+            txtTipoJornada.setValue(selectedEmpresa.getTipoJornada());
+            txtModalidad.setValue(selectedEmpresa.getModalidad());
             txtMail.setText(selectedEmpresa.getMailEmpresa());
         }
     }

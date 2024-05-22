@@ -5,15 +5,17 @@ import java.util.List;
 
 public class EmpresaDAO {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/GestionEmpresas?serverTimezone=Europe/Madrid&verifyServerCertificate=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/gestionempresas?useSSL=false&serverTimezone=Europe/Madrid&verifyServerCertificate=false";
     private static final String USER = "root";
-    private static final String PASSWORD = "Chispa10.";
+    private String PASSWORD = "Roma@te211";
+    String url = "jdbc:mysql://localhost:3306/gestionempresas?user=root&password=Rom@te211&auth_plugin=mysql_native_password&useSSL=false";
+
 
     public List<Empresa> obtenerTodasLasEmpresas() {
         List<Empresa> empresas = new ArrayList<>();
         String query = "SELECT * FROM empresas";
 
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -39,7 +41,7 @@ public class EmpresaDAO {
 
     public boolean insertarEmpresa(Empresa empresa) {
         String query = "INSERT INTO empresas (cif, razonSocial, direccion, cp, localidad, tipoJornada, modalidad, mailEmpresa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, empresa.getCif());
@@ -62,7 +64,7 @@ public class EmpresaDAO {
 
     public boolean eliminarEmpresa(int codigoEmpresa) {
         String query = "DELETE FROM empresas WHERE codigoEmpresa = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, codigoEmpresa);
@@ -76,7 +78,7 @@ public class EmpresaDAO {
 
     public boolean modificarEmpresa(Empresa empresa) {
         String query = "UPDATE empresas SET cif = ?, razonSocial = ?, direccion = ?, cp = ?, localidad = ?, tipoJornada = ?, modalidad = ?, mailEmpresa = ? WHERE codigoEmpresa = ?";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, empresa.getCif());
@@ -99,7 +101,7 @@ public class EmpresaDAO {
 
     public int obtenerSiguienteCodigoEmpresa() {
         String query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'GestionEmpresas' AND TABLE_NAME = 'Empresas'";
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             if (rs.next()) {

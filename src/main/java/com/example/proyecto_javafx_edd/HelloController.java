@@ -48,9 +48,9 @@ public class HelloController {
 
     // Campos de la base de datos
     // Ajustar estos campos dependiendo de la configuracion que se tenga de la base de datos y el gestor de la misma.
-    String url = "jdbc:mysql://localhost:3306/GestionEmpresas";
+    String url = "jdbc:mysql://localhost:3306/gestionempresas?useSSL=false";
     String user = "root";
-    String password = "Antonio";
+    String password = "Rom@te211";
     Connection conn;
 
     public HelloController() {
